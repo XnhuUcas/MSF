@@ -1,4 +1,4 @@
-function[breakpoint_total, sparse_estimate, group_estimate] = msf(X_reshape, Y, R, lam1, lam2, biasflag)
+function[breakpoint_total, sparse_estimate, group_estimate] = msf(X_reshape, Y_total, R, lam1, lam2, biasflag, thr1, thr2)
 
 #
 
@@ -11,13 +11,13 @@ for res_dim = 1:q
 
     %% Localized Lasso
     %Training
-    [W, ~] = LocLasso(X_reshape, Y, R, lam1, lam2, biasflag);
+    [W, ~] = LocLasso(X_reshape, Y_total(:, res_dim), R, lam1, lam2, biasflag);
 
     W = W.*(abs(W) > 0.01);
     [row, ~] = find(W);
     row = unique(row);
     X1 = X_reshape(row, :);
-    [W1, ~] = LocLasso(X1, Y, R, lam1, 2 * lam2, biasflag);
+    [W1, ~] = LocLasso(X1, Y_total(:, res_dim), R, lam1, 2 * lam2, biasflag);
 %     W1 = W1.*(abs(W1) > 0.01);
     
 %     row_ind_cell{res_dim} = row;
@@ -40,8 +40,8 @@ group_estimate = W_est_multilasso;
 %% 稀疏估计
 % thr1 = 0.02;
 % thr2 = 0.18;
-thr1 = 0.05;
-thr2 = 0.16;
+% thr1 = 0.05;
+% thr2 = 0.16;
 %% Locallasso
 W_loclasso_est_mat = cat(1,W_est_multilasso{:});
 dist_loclasso = diag(squareform(pdist(W_loclasso_est_mat')), 1);
