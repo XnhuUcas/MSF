@@ -76,14 +76,14 @@ W_loclasso_est_sparse_mse = zeros(p*n, q);
 for i2 = 1:q
 %     fprintf('Now the %d th response.\n', i2)
     Y_loclasso_est = Respon_mat(:,i2);
-    Wf_loclasso = zeros(p, size(breakpoint_total{1}, 1) - 1);
-    for i3 = 1:size(breakpoint_total{1}, 1) - 1
-        [B_loclasso, info_loclasso] = lasso(X(breakpoint_total{1}(i3):breakpoint_total{1}(i3 + 1) - 1, :), Y_loclasso_est(breakpoint_total{1}(i3):breakpoint_total{1}(i3 + 1) - 1), 'Alpha', 1, 'CV', 5);
+    Wf_loclasso = zeros(p, size(breakpoint_total, 1) - 1);
+    for i3 = 1:size(breakpoint_total, 1) - 1
+        [B_loclasso, info_loclasso] = lasso(X(breakpoint_total(i3):breakpoint_total(i3 + 1) - 1, :), Y_loclasso_est(breakpoint_total(i3):breakpoint_total(i3 + 1) - 1), 'Alpha', 1, 'CV', 5);
         Wf_loclasso(:, i3) = B_loclasso(:, info_loclasso.Index1SE);
     end
     Wf_loclasso_mat = zeros(p, n);
-    for i4 = 1:size(breakpoint_total{1}, 1) - 1
-        Wf_loclasso_mat(:,breakpoint_total{1}(i4):breakpoint_total{1}(i4 + 1) - 1) = repmat(Wf_loclasso(:, i4), 1, breakpoint_total{1}(i4 + 1) - breakpoint_total{1}(i4));
+    for i4 = 1:size(breakpoint_total, 1) - 1
+        Wf_loclasso_mat(:,breakpoint_total(i4):breakpoint_total(i4 + 1) - 1) = repmat(Wf_loclasso(:, i4), 1, breakpoint_total(i4 + 1) - breakpoint_total(i4));
     end
     W_loclasso_est_sparse(((i2-1)*p+1):(i2*p), :) = Wf_loclasso_mat;
     W_loclasso_est_sparse_mse(:, i2) = Wf_loclasso_mat(:);
