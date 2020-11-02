@@ -1,6 +1,4 @@
-function[breakpoint_total, sparse_estimate, group_estimate] = msf(X_reshape, Y_total, R, lam1, lam2, biasflag, thr1, thr2)
-
-#
+function[breakpoint_total, sparse_estimate, group_estimate] = MSF(X_reshape, Y_total, R, lam1, lam2, biasflag, thr1, thr2)
 
 W_est_multilasso = cell(q, 1);
 X1_cell = cell(q, 1);
