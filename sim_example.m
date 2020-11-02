@@ -50,6 +50,7 @@ E = ones(n, 2 * L + 1);
 R = spdiags(E, -L:L, n, n);
 R = R - diag(diag(R));
 
+# Breakpoints threshold
 thr1 = 0.05;
 thr2 = 0.16; 
 
