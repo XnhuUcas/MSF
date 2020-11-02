@@ -1,4 +1,4 @@
-function [W,fval,Yest] = LocalizedLasso(Xtr,Ytr,R,lam1,lam2,biasflag)
+function [W,fval,Yest] = LocLasso(Xtr,Ytr,R,lam1,lam2,biasflag)
 
 num_iter = 50;
 
