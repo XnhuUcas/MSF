@@ -50,7 +50,7 @@ E = ones(n, 2 * L + 1);
 R = spdiags(E, -L:L, n, n);
 R = R - diag(diag(R));
 
-# Breakpoints threshold
+% Breakpoints threshold
 thr1 = 0.05;
 thr2 = 0.16; 
 
@@ -68,6 +68,6 @@ Y_total = X_sparse * cat(1, W0_reshape{:})' + mvnrnd(zeros(1, q), sigma_err_matr
 X_reshape = X'; %  X:p*n % 
 
 
-# /////////////////// Running MSF /////////////////////
-[breakpoint_total, sparse_estimate, group_estimate] = msf(X_reshape, Y_total, R, lam1, lam2, biasflag, thr1, thr2); 
+% /////////////////// Running MSF /////////////////////
+[breakpoint_total, sparse_estimate, group_estimate] = MSF(X_reshape, Y_total, R, lam1, lam2, biasflag, thr1, thr2); 
 
