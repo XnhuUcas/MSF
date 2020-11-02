@@ -1,4 +1,4 @@
-function[breakpoint_total, sparse_estimate, group_estimate] = msf(input_para, beta_type)
+function[breakpoint_total, sparse_estimate, group_estimate] = msf(X_reshape, Y, R, lam1, lam2, biasflag)
 
 #
 
