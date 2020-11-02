@@ -1,4 +1,4 @@
-function [W0] = generate_solution(p, q, k, n, option)
+function [W0] = DataGeneration(p, q, k, n, option)
 
 % generating pq*n regression coefficients % 
 % there are k nonzero coefficients in each set% 
