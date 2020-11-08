@@ -36,12 +36,6 @@ group_estimate = W_est_multilasso;
 %///////////////////////////////////////////////////////////////////////////////////
 
 % tic
-%% 稀疏估计
-% thr1 = 0.02;
-% thr2 = 0.18;
-% thr1 = 0.05;
-% thr2 = 0.16;
-%% Locallasso
 W_loclasso_est_mat = cat(1,W_est_multilasso{:});
 dist_loclasso = diag(squareform(pdist(W_loclasso_est_mat')), 1);
 [dist_sort_loclasso, I_loclasso] = sort(dist_loclasso, 'descend');
