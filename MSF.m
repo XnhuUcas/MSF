@@ -1,9 +1,10 @@
-function[breakpoint_total, sparse_estimate, group_estimate] = MSF(X_reshape, Y_total, R, lam1, lam2, biasflag, thr1, thr2)
+function[breakpoint_total, sparse_estimate, group_estimate] = MSF(X, Y_total, R, lam1, lam2, biasflag, thr1, thr2)
 
 n = size(Y_total, 1);
 q = size(Y_total, 2);
-p = size(X_reshape, 1);
+p = size(X, 2);
 W_est_multilasso = cell(q, 1);
+X_reshape = X'; %  X:p*n % 
 
 % tic
 for res_dim = 1:q
@@ -20,6 +21,9 @@ for res_dim = 1:q
     X1 = X_reshape(row, :);
     [W1, ~] = LocLasso(X1, Y_total(:, res_dim), R, lam1, 2 * lam2, biasflag);
 %     W1 = W1.*(abs(W1) > 0.01);
+    
+%     row_ind_cell{res_dim} = row;
+%     X1_cell{res_dim} = X1;
     W_est_multilasso{res_dim} = W1;
 
     %% Stop
