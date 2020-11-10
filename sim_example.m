@@ -69,43 +69,43 @@ Y_total = X_sparse * cat(1, W0_reshape{:})' + mvnrnd(zeros(1, q), sigma_err_matr
 % /////////////////// Running MSF /////////////////////
 [breakpoint_total, sparse_estimate, group_estimate] = MSF(X, Y_total, R, lam1, lam2, biasflag, thr1, thr2); 
 
-% %% get results
-% % Sparse Estimate
-% W_true = cat(1,W0{:});
-% TP = length(find(((abs(sparse_estimate) > 0)==1) & ((W_true~=0)==1)));
-% FP = length(find(((abs(sparse_estimate) > 0)==1) & ((W_true~=0)==0)));  
-% TN = length(find(((abs(sparse_estimate) > 0)==0) & ((W_true~=0)==0))); 
-% FN = length(find(((abs(sparse_estimate) > 0)==0) & ((W_true~=0)==1)));  
-% Accuracy = (TP+TN)/(TP+FP+TN+FN);
-% Precision = TP/(TP+FP);
-% Recall = TP/(TP+FN);
-% FPR = FP/(FP+TN);
-% Fscore = 2*Precision*Recall/(Precision+Recall);
-% results_sparse = [Accuracy, Precision, Recall, FPR, Fscore];
-% 
-% % Group Estimate
-% group_nums = breakpoint_total(2:length(breakpoint_total)) - breakpoint_total(1:length(breakpoint_total)-1);
-% group_nums_mat = cell(length(group_nums), 1);
-% for j18 = 1:length(group_nums)
-%     group_nums_mat{j18} = ones(group_nums(j18), group_nums(j18));
-% end
-% predict_matrix_ad = blkdiag(group_nums_mat{:});
-% if strcmpi(beta_type, 'diag_non_bal')||strcmpi(beta_type, 'diag_same_bal')
-%     true_matrix = blkdiag(ones(n/3,n/3),ones(n/3,n/3),ones(n/3,n/3));
-% else
-%     true_matrix = blkdiag(ones(60,60),ones(80,80),ones(100,100));
-% end
-% TP = length(find((predict_matrix_ad==1)&(true_matrix==1)));
-% FP = length(find((predict_matrix_ad==1)&(true_matrix==0)));  
-% TN = length(find((predict_matrix_ad==0)&(true_matrix==0))); 
-% FN = length(find((predict_matrix_ad==0)&(true_matrix==1)));
-% Accuracy = (TP+TN)/(TP+FP+TN+FN);
-% Precision = TP/(TP+FP);
-% Recall = TP/(TP+FN);
-% FPR = FP/(FP+TN);
-% Fscore = 2*Precision*Recall/(Precision+Recall);
-% results_group = [Accuracy, Precision, Recall, FPR, Fscore];
-% 
-% 
-% % Group Num
-% groupnum_est = length(breakpoint_total) - 1;
+% ////////////////// Get results //////////////////////
+% Sparse Estimate
+W_true = cat(1,W0{:});
+TP = length(find(((abs(sparse_estimate) > 0)==1) & ((W_true~=0)==1)));
+FP = length(find(((abs(sparse_estimate) > 0)==1) & ((W_true~=0)==0)));  
+TN = length(find(((abs(sparse_estimate) > 0)==0) & ((W_true~=0)==0))); 
+FN = length(find(((abs(sparse_estimate) > 0)==0) & ((W_true~=0)==1)));  
+Accuracy = (TP+TN)/(TP+FP+TN+FN);
+Precision = TP/(TP+FP);
+Recall = TP/(TP+FN);
+FPR = FP/(FP+TN);
+Fscore = 2*Precision*Recall/(Precision+Recall);
+results_sparse = [Accuracy, Precision, Recall, FPR, Fscore];
+
+% Group Estimate
+group_nums = breakpoint_total(2:length(breakpoint_total)) - breakpoint_total(1:length(breakpoint_total)-1);
+group_nums_mat = cell(length(group_nums), 1);
+for j18 = 1:length(group_nums)
+    group_nums_mat{j18} = ones(group_nums(j18), group_nums(j18));
+end
+predict_matrix_ad = blkdiag(group_nums_mat{:});
+if strcmpi(beta_type, 'diag_non_bal')||strcmpi(beta_type, 'diag_same_bal')
+    true_matrix = blkdiag(ones(n/3,n/3),ones(n/3,n/3),ones(n/3,n/3));
+else
+    true_matrix = blkdiag(ones(60,60),ones(80,80),ones(100,100));
+end
+TP = length(find((predict_matrix_ad==1)&(true_matrix==1)));
+FP = length(find((predict_matrix_ad==1)&(true_matrix==0)));  
+TN = length(find((predict_matrix_ad==0)&(true_matrix==0))); 
+FN = length(find((predict_matrix_ad==0)&(true_matrix==1)));
+Accuracy = (TP+TN)/(TP+FP+TN+FN);
+Precision = TP/(TP+FP);
+Recall = TP/(TP+FN);
+FPR = FP/(FP+TN);
+Fscore = 2*Precision*Recall/(Precision+Recall);
+results_group = [Accuracy, Precision, Recall, FPR, Fscore];
+
+
+% Group Num
+groupnum_est = length(breakpoint_total) - 1;
