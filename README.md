@@ -17,6 +17,7 @@ Any questions or comments, please don't hesitate to contact with me any time.
 
 # Citation
 If you use this code to analyze data, please cite the following paper:  
+
 Zhang, S., Hu, X., Luo, Z., Jiang, Y., Sun, Y., & Ma, S. (2021). Biomarker‐guided heterogeneity analysis of genetic regulations via multivariate sparse fusion. Statistics in Medicine.
 
 
