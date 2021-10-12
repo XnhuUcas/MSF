@@ -11,4 +11,12 @@ This package provides a new approach, which applies the penalized fusion techniq
 Sanguo Zhang; Xiaonan Hu; Ziye Luo; Yu Jiang; Yifan Sun sunyifan@ruc.edu.cn; Shuangge Ma shuangge.ma@yale.edu
 
 # Maintainer
-Xiaonan Hu
+Xiaonan Hu (xnhu@amss.ac.cn)
+Any questions or comments, please don't hesitate to contact with me any time.
+
+# Citation
+If you use this code to analyze data, please cite the following paper:  
+Zhang, S., Hu, X., Luo, Z., Jiang, Y., Sun, Y., & Ma, S. (2021). Biomarker‐guided heterogeneity analysis of genetic regulations via multivariate sparse fusion. Statistics in Medicine.
+
+
+
